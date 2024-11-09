@@ -1,4 +1,4 @@
-export const Colors = {
+const colors = {
   primary: '#242639',
   background: '#1f202f',
   statusbar: '#191A28',
@@ -8,4 +8,8 @@ export const Colors = {
   danger: '#e74c3c',
   success: '#28a745',
   gray: '#bdc3c7',
+  placeholder: '#bdc3c7',
+  activityIndicator: '#fff',
 };
+
+export default colors;

@@ -1,10 +1,13 @@
+import images from 'assets/images';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Image, View} from 'react-native';
+
+import styles from './Header.styles';
 
 const Header = () => {
   return (
-    <View>
-      <Text>Header</Text>
+    <View style={styles.container}>
+      <Image source={images.common.logo} style={styles.logo} />
     </View>
   );
 };
