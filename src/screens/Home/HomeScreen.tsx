@@ -1,9 +1,14 @@
 import {useInfiniteQuery} from '@tanstack/react-query';
-import {ErrorFallback, Header, ScreenLoader, TickerItem} from 'components';
+import {
+  ErrorFallback,
+  Header,
+  ScreenLoader,
+  SearchInput,
+  TickerItem,
+} from 'components';
 import {Ticker} from 'models/api';
 import React, {useCallback, useState} from 'react';
 import {ActivityIndicator, FlatList, RefreshControl, View} from 'react-native';
-import SearchInput from 'SearchInput/SearchInput';
 import apiService from 'services/apiService';
 import colors from 'styles/colors';
 
