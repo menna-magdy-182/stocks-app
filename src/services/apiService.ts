@@ -1,4 +1,4 @@
-import {PAGINATION_LIMIT} from 'constants/common';
+import {PAGINATION_LIMIT} from 'constants/api';
 
 import apiClient from './apiClient';
 import endpoints from './endpoints';

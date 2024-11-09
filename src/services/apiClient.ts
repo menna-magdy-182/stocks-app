@@ -1,5 +1,6 @@
+import {API_KEY} from '@env';
 import axios from 'axios';
-import {API_KEY, API_VERSION, BASE_URL} from 'constants/common';
+import {API_VERSION, BASE_URL} from 'constants/api';
 
 const apiClient = axios.create({
   baseURL: `${BASE_URL}/${API_VERSION}`,
