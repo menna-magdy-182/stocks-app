@@ -74,6 +74,7 @@ const HomeScreen = () => {
       {error && <ErrorFallback />}
 
       <FlatList<Ticker>
+        testID="test:id/tickers-list"
         data={data}
         renderItem={renderTickerItem}
         onEndReached={onEndReached}

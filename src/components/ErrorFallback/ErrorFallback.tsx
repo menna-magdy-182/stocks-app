@@ -6,7 +6,7 @@ import styles from './ErrorFallback.styles';
 
 const ErrorFallback = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="test:id/error-fallback">
       <Text>Something went wrong, please try again later.</Text>
     </View>
   );

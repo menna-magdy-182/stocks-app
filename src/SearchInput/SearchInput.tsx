@@ -18,6 +18,7 @@ const SearchInput: FC<SearchInputProps> = ({
   return (
     <View style={[styles.container, style]}>
       <TextInput
+        testID="test:id/search-input"
         placeholder={'Search for stocks'}
         placeholderTextColor={colors.placeholder}
         style={[styles.input, inputStyle]}

@@ -21,6 +21,7 @@ const TickerItem = ({item}: TickerItemProps) => {
         </View>
       ) : (
         <FastImage
+          testID="test:id/ticker-image"
           source={{uri: endpoints.tickerLogo(item?.ticker)}}
           style={styles.image}
           resizeMode="contain"
