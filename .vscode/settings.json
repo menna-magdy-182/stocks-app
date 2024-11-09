@@ -1,0 +1,8 @@
+{
+  "editor.formatOnSave": true,  // Enable auto-formatting on save
+  "eslint.validate": ["javascript", "typescript", "typescriptreact", "javascriptreact"],
+"prettier.requireConfig": true,
+"editor.codeActionsOnSave": {
+  "source.fixAll.eslint": "explicit"
+}, 
+}
