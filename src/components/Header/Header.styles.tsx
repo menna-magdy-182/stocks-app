@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: SCREEN_WIDTH * 0.3,
-    height: 30,
+    aspectRatio: 3.5,
   },
 });
 
