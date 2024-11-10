@@ -10,14 +10,17 @@ import styles from './TickerItem.styles';
 interface TickerItemProps {
   item: Ticker;
 }
-const TickerItem = ({item}: TickerItemProps) => {
-  const [imageError, setImageError] = useState(false);
+
+const TickerItem: React.FC<TickerItemProps> = ({item}) => {
+  const [hasImageError, setHasImageError] = useState(false);
+
+  const handleImageError = () => setHasImageError(true);
 
   return (
     <TouchableOpacity style={styles.container}>
-      {imageError ? (
+      {hasImageError ? (
         <View style={styles.imageFallbackContainer}>
-          <Text>{item.ticker.substring(0, 2)}</Text>
+          <Text>{item?.ticker.slice(0, 2)}</Text>
         </View>
       ) : (
         <FastImage
@@ -25,7 +28,7 @@ const TickerItem = ({item}: TickerItemProps) => {
           source={{uri: endpoints.tickerLogo(item?.ticker)}}
           style={styles.image}
           resizeMode="contain"
-          onError={() => setImageError(true)}
+          onError={handleImageError}
         />
       )}
 
@@ -33,7 +36,7 @@ const TickerItem = ({item}: TickerItemProps) => {
         {item?.ticker}
       </Text>
       <Text style={styles.textName} numberOfLines={2}>
-        {item?.name}
+        {item.name}
       </Text>
     </TouchableOpacity>
   );

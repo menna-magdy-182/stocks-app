@@ -14,7 +14,7 @@ import colors from 'styles/colors';
 
 import styles from './HomeScreen.styles';
 
-const HomeScreen = () => {
+const HomeScreen: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Delay is added to avoid exhaustive network calls on every input text change
@@ -35,22 +35,13 @@ const HomeScreen = () => {
     queryKey: ['tickers', searchTerm],
     queryFn: ({queryKey, pageParam = 1}) =>
       apiService.fetchTickers(queryKey[1] as string, pageParam as string),
-    getNextPageParam: lastPage => {
-      const nextUrl = lastPage?.data.next_url;
-      if (nextUrl) {
-        const cursorParam = nextUrl.split('cursor=')[1];
-        return cursorParam;
-      }
-      return undefined;
-    },
+    getNextPageParam: lastPage => lastPage?.data.next_url?.split('cursor=')[1],
     initialPageParam: '',
-    select: result => {
-      return result.pages.flatMap(page => page.data.results);
-    },
+    select: result => result.pages.flatMap(page => page.data.results),
   });
 
-  const onRefreshList = () => refetch();
-  const onEndReached = () => fetchNextPage();
+  const onRefreshList = useCallback(() => refetch(), [refetch]);
+  const onEndReached = useCallback(() => fetchNextPage(), [fetchNextPage]);
 
   const renderTickerItem = useCallback(
     ({item, index}: {item: Ticker; index: number}) => {
@@ -59,24 +50,24 @@ const HomeScreen = () => {
     [],
   );
 
-  const renderFooter = () => {
+  const renderFooter = useCallback(() => {
     if (isFetchingNextPage) {
       return (
         <ActivityIndicator size="small" color={colors.activityIndicator} />
       );
-    } else if (error && data?.length) {
-      return <ErrorFallback />;
-    } else {
-      return null;
     }
-  };
+    if (error && data?.length) {
+      return <ErrorFallback />;
+    }
+    return null;
+  }, [isFetchingNextPage, error, data]);
 
   return (
     <View style={styles.container}>
       <Header />
       <SearchInput onChangeText={onChangeSearchInputText} />
 
-      {error && <ErrorFallback />}
+      {error && !data?.length && <ErrorFallback />}
 
       <FlatList<Ticker>
         testID="test:id/tickers-list"
